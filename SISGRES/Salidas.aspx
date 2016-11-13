@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Salidas" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="Salidas.aspx.cs" Inherits="SISGRES.Salidas" MaintainScrollPositionOnPostback="true" %>
 
-<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.12.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.11.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"
     Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>

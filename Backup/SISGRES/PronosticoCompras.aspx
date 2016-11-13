@@ -1,4 +1,4 @@
-﻿<%@ Page Title="PRONOSTICO DE GASTOS" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="PronosticoCompras.aspx.cs" Inherits="SISGRES.PronosticoCompras" %><%@ Register assembly="DevExpress.Web.v14.2, Version=14.2.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+﻿<%@ Page Title="PRONOSTICO DE GASTOS" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="PronosticoCompras.aspx.cs" Inherits="SISGRES.PronosticoCompras" %><%@ Register assembly="DevExpress.Web.v14.2, Version=14.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

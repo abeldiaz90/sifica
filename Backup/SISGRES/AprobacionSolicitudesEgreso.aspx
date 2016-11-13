@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Aprobacion de solicitudes de Egreso" Language="C#" MasterPageFile="~/Principal.Master"
     AutoEventWireup="true" CodeBehind="AprobacionSolicitudesEgreso.aspx.cs" Inherits="SISGRES.AprobacionSolicitudesEgreso" %>
 
-<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
     Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
