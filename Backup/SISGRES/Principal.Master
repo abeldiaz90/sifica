@@ -1,0 +1,131 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs"
+    Inherits="SISGRES.Principal" EnableViewState="true" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Src="MnuPrincipal.ascx" TagName="MnuPrincipal" TagPrefix="uc1" %>
+
+
+
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web" TagPrefix="dx1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>ACCESO PRINCIPAL</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body bgcolor="#cccccc">
+    <script language="javascript" type="text/javascript">
+        function MantenSesion() {
+            var CONTROLADOR = "Sesion.ashx";
+            var head = document.getElementsByTagName('head').item(0);
+            script = document.createElement('script');
+            script.src = CONTROLADOR;
+            script.setAttribute('type', 'text/javascript');
+            script.defer = true;
+            head.appendChild(script);
+        } 
+    </script>
+    <script language="javascript" type="text/javascript">
+    setInterval('MantenSesion()', <%= (int) (0.9 * (Session.Timeout * 60000)) %>);
+    </script>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <dx:ASPxSplitter ID="ASPxSplitter1" runat="server" BackColor="#CCFFCC" ClientIDMode="AutoID"
+                Height="100px" Theme="Youthful">
+                <Panes>
+                    <dx:SplitterPane>
+                        <ContentCollection>
+                            <dx:SplitterContentControl runat="server" SupportsDisabledAttribute="True">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td align="left" valign="middle">
+                                            <asp:Image ID="Image1" runat="server" Height="62px" ImageAlign="Middle" 
+                                                Width="100px" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" />
+                                            <br />
+                                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Font-Size="Medium" 
+                                                Theme="Youthful">
+                                            </dx:ASPxLabel>
+                                        </td>
+                                        <td align="center" valign="middle" style="text-align: right">
+                                            <asp:LoginName ID="LoginName1" runat="server" Font-Bold="True" Font-Names="Arial" />
+                                            <br />
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" Font-Bold="True" Font-Names="Arial"
+                                                OnLoggingOut="LoginStatus1_LoggingOut" />
+                                            <br />
+                                            <dx:ASPxLabel ID="ASPxLabel2" runat="server" Font-Bold="False" 
+                                                Font-Names="Microsoft Sans Serif" Font-Size="Smaller" Style="font-weight: 700">
+                                            </dx:ASPxLabel>
+                                            <br />
+                                            <dx:ASPxLabel ID="lblFechaHora" runat="server" ClientIDMode="AutoID" 
+                                                Font-Names="Microsoft Sans Serif">
+                                            </dx:ASPxLabel>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </dx:SplitterContentControl>
+                        </ContentCollection>
+                    </dx:SplitterPane>
+                </Panes>
+            </dx:ASPxSplitter>
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
+            <dx:ASPxMenu ID="Menu" runat="server" NameField="MenuText" NavigateUrlField="destUrl"
+                TextField="MenuText" AccessibilityCompliant="True" AutoSeparators="All"
+                ClientIDMode="AutoID" CssFilePath="~/App_Themes/SoftOrange/{0}/styles.css" CssPostfix="SoftOrange"
+                GutterWidth="0px" HorizontalAlign="Center" ImageUrlField="ImageUrlField" ShowPopOutImages="True"
+                SpriteCssFilePath="~/App_Themes/SoftOrange/{0}/sprite.css" ToolTipField="tooltip"
+                Theme="Youthful" ItemImagePosition="Bottom" ShowAsToolbar="True" 
+                VerticalAlign="Middle" AllowSelectItem="True" 
+                ApplyItemStyleToTemplates="True" 
+                EnableSubMenuScrolling="True" SelectParentItem="True">
+                <LoadingPanelImage Url="~/App_Themes/SoftOrange/Web/Loading.gif">
+                </LoadingPanelImage>
+                <ItemStyle DropDownButtonSpacing="8px" PopOutImageSpacing="10px" ToolbarDropDownButtonSpacing="5px"
+                    ToolbarPopOutImageSpacing="5px" />
+                <SubMenuStyle GutterWidth="0px" />
+            </dx:ASPxMenu>
+            <dx:ASPxPopupControl ID="popupCompañia" runat="server" AllowDragging="True" AllowResize="True"
+                CloseAction="None" HeaderText="Seleccione la Compañia" Modal="True" PopupHorizontalAlign="WindowCenter"
+                PopupVerticalAlign="WindowCenter" Theme="Youthful" Width="400px">
+                <ContentStyle HorizontalAlign="Center" VerticalAlign="Middle">
+                </ContentStyle>
+                <ContentCollection>
+                    <dx:PopupControlContentControl runat="server">
+                        <dx:ASPxComboBox ID="cboCia" runat="server" AutoResizeWithContainer="True" DataSourceID="Compañias0"
+                            EnableTheming="True" HorizontalAlign="Center" IncrementalFilteringMode="Contains"
+                            TextField="COMPAÑIA" Theme="Youthful" ValueField="ID_COMPAÑIA" 
+                            Width="100%" ImageUrlField="IMAGEURL">
+                            <ItemImage Height="70px" Width="100px">
+                            </ItemImage>
+                            <ItemStyle Height="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
+                            <ListBoxStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True">
+                            </ListBoxStyle>
+                            <LoadingPanelStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True">
+                            </LoadingPanelStyle>
+                            <ValidationSettings ErrorTextPosition="Bottom">
+                                <RequiredField IsRequired="True" />
+                            </ValidationSettings>
+                        </dx:ASPxComboBox>
+                        <asp:SqlDataSource ID="Compañias0" runat="server" ConnectionString="<%$ ConnectionStrings:SIFICA %>"
+                            
+                            
+                            SelectCommand="SELECT [ID_COMPAÑIA], [COMPAÑIA], [IMAGEURL] FROM [COMPAÑIAS] ORDER BY [COMPAÑIA]">
+                        </asp:SqlDataSource>
+                        <dx:ASPxButton ID="ASPxButton1" runat="server" OnClick="ASPxButton1_Click" Text="Aceptar"
+                            Theme="Youthful">
+                        </dx:ASPxButton>
+                    </dx:PopupControlContentControl>
+                </ContentCollection>
+            </dx:ASPxPopupControl>
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

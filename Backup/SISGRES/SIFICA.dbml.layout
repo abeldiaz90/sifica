@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SIFICA">
+  <DataContextMoniker Name="/SIFICADataContext" />
+  <nestedChildShapes>
+    <classShape Id="593ce5ba-4f70-4620-a3d1-f60286362ab8" absoluteBounds="1.25, 1.125, 2, 4.8477197265625">
+      <DataClassMoniker Name="/SIFICADataContext/PROVEEDORE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a043909e-3604-47f3-840b-41e77b9b4bc3" absoluteBounds="1.2650000000000001, 1.585, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

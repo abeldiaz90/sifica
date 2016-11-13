@@ -1,0 +1,765 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_9B18B8_sifica" Class="SIFICADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SQL5011.Smarterasp.net;Initial Catalog=DB_9B18B8_sifica;Persist Security Info=True;User ID=DB_9B18B8_sifica_admin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PARTIDAS" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.PROVEEDORES" Member="PROVEEDOREs">
+    <Type Name="PROVEEDORE">
+      <Column Name="ID_PROOVEDOR" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PROOVEDOR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DIRECCION" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PAIS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ESTADO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CIUDAD" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="CODIGO_POSTAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TELEFONO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CORREO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="RFC" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TIPO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOMBRECONTACTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DIASCREDITO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MONTOCREDITO" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="FORMAPAGO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BANCO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUENTA" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CLAVE" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="LOGO" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FECHA_CREACION" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.EMPLEADOS_ACTUALIZAR_FOTOS" Method="EMPLEADOS_ACTUALIZAR_FOTOS">
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FOTO" Parameter="fOTO" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BANCOS_MODIFICAR_LOGO" Method="BANCOS_MODIFICAR_LOGO">
+    <Parameter Name="ID_BANCO" Parameter="iD_BANCO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="URLLOGO" Parameter="uRLLOGO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="LOGO" Parameter="lOGO" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_OBTENER_ID" Method="REQUISICIONES_HERRAMIENTAS_OBTENER_ID">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="REQUISICIONES_HERRAMIENTAS_OBTENER_IDResult">
+      <Column Name="ID_REQUISICION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_OBTENER_ID" Method="REQUISICIONES_MATERIALES_OBTENER_ID">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="REQUISICIONES_MATERIALES_OBTENER_IDResult">
+      <Column Name="ID_REQUISICION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.USUARIOS_INSERTAR" Method="USUARIOS_INSERTAR">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PASSWORD" Parameter="pASSWORD" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.USUARIOS_MODIFICAR" Method="USUARIOS_MODIFICAR">
+    <Parameter Name="ID_USUARIO" Parameter="iD_USUARIO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="PASSWORD" Parameter="pASSWORD" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.VERIFICAR_PERMISOS" Method="VERIFICAR_PERMISOS">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="VERIFICAR_PERMISOSResult">
+      <Column Name="PERMISOS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.INSERTA_PERMISOS_USUARIOS" Method="INSERTA_PERMISOS_USUARIOS">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="PERMISOS" Parameter="pERMISOS" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.MODIFICA_PERMISOS_USUARIOS" Method="MODIFICA_PERMISOS_USUARIOS">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="PERMISOS" Parameter="pERMISOS" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ORDEN_DE_COMPRA_A_DETALLE_MATERIALES" Method="ORDEN_DE_COMPRA_A_DETALLE_MATERIALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ORDEN_DE_COMPRA_A_DETALLE_MATERIALESResult">
+      <Column Name="PARTIDA" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CANTIDAD" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UNIDAD" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MATERIAL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.MATERIALES_BUSCAR_ELEMENTOS_POR_DESCRIPCION" Method="MATERIALES_BUSCAR_ELEMENTOS_POR_DESCRIPCION">
+    <Parameter Name="DESCRIPCION" Parameter="dESCRIPCION" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="MATERIALES_BUSCAR_ELEMENTOS_POR_DESCRIPCIONResult">
+      <Column Name="ID_MATERIAL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MATERIAL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UNIDAD" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.HERRAMIENTAS_BUSCAR_ELEMENTOS_POR_DESCRIPCION" Method="HERRAMIENTAS_BUSCAR_ELEMENTOS_POR_DESCRIPCION">
+    <Parameter Name="DESCRIPCION" Parameter="dESCRIPCION" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="HERRAMIENTAS_BUSCAR_ELEMENTOS_POR_DESCRIPCIONResult">
+      <Column Name="ID_HERRAMIENTA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HERRAMIENTA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UNIDAD" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_INSERTAR" Method="REQUISICIONES_MATERIALES_INSERTAR">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="JUSTIFICACION" Parameter="jUSTIFICACION" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="LUGAR_ENTREGA" Parameter="lUGAR_ENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="FECHA_ENTREGA" Parameter="fECHA_ENTREGA" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_INSERTAR" Method="REQUISICIONES_HERRAMIENTAS_INSERTAR">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="JUSTIFICACION" Parameter="jUSTIFICACION" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="LUGAR_ENTREGA" Parameter="lUGAR_ENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="FECHA_ENTREGA" Parameter="fECHA_ENTREGA" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_DETALLES_INSERTAR" Method="REQUISICIONES_MATERIALES_DETALLES_INSERTAR">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_MATERIAL" Parameter="iD_MATERIAL" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CANTIDAD" Parameter="cANTIDAD" Type="System.Decimal" DbType="Decimal(18,4)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_DETALLES_INSERTAR" Method="REQUISICIONES_HERRAMIENTAS_DETALLES_INSERTAR">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_HERRAMIENTA" Parameter="iD_HERRAMIENTA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CANTIDAD" Parameter="cANTIDAD" Type="System.Decimal" DbType="Decimal(18,4)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DOCUMENTOS_COTIZACIONES_ORDENES_DE_COMPRA_MATERIALES_INSERTAR" Method="DOCUMENTOS_COTIZACIONES_ORDENES_DE_COMPRA_MATERIALES_INSERTAR">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DOCUMENTO" Parameter="dOCUMENTO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DOCUMENTOS_COTIZACIONES_ORDENES_DE_COMPRA_HERRAMIENTAS_INSERTAR" Method="DOCUMENTOS_COTIZACIONES_ORDENES_DE_COMPRA_HERRAMIENTAS_INSERTAR">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DOCUMENTO" Parameter="dOCUMENTO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUSICION_APROBACION_HERRAMIENTAS" Method="REQUSICION_APROBACION_HERRAMIENTAS">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUSICION_APROBACION_MATERIALES" Method="REQUSICION_APROBACION_MATERIALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUSICION_RECHAZO_HERRAMIENTAS" Method="REQUSICION_RECHAZO_HERRAMIENTAS">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUSICION_RECHAZO_MATERIALES" Method="REQUSICION_RECHAZO_MATERIALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ROLES_MODIFICAR_PERMISOS" Method="ROLES_MODIFICAR_PERMISOS">
+    <Parameter Name="ID_ROL" Parameter="iD_ROL" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PERMISOS" Parameter="pERMISOS" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.OBTENER_DESTINATARIOS" Method="OBTENER_DESTINATARIOS">
+    <Parameter Name="NIVEL" Parameter="nIVEL" Type="System.Int32" DbType="Int" />
+    <ElementType Name="OBTENER_DESTINATARIOSResult">
+      <Column Name="DESTINATARIOS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_MOSTRAR_POR_USUARIO" Method="REQUISICIONES_HERRAMIENTAS_MOSTRAR_POR_USUARIO">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="REQUISICIONES_HERRAMIENTAS_MOSTRAR_POR_USUARIOResult">
+      <Column Name="ID_REQUISICION" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(203) NOT NULL" CanBeNull="false" />
+      <Column Name="CORREO_ELECTRONICO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="COMPAÑIA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="JUSTIFICACION" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_MOSTRAR_POR_USUARIO" Method="REQUISICIONES_MATERIALES_MOSTRAR_POR_USUARIO">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="REQUISICIONES_MATERIALES_MOSTRAR_POR_USUARIOResult">
+      <Column Name="ID_REQUISICION" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(203) NOT NULL" CanBeNull="false" />
+      <Column Name="CORREO_ELECTRONICO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="COMPAÑIA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="JUSTIFICACION" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_OBTENER_NOMBRE_CREADOR" Method="REQUISICIONES_MATERIALES_OBTENER_NOMBRE_CREADOR">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <ElementType Name="REQUISICIONES_MATERIALES_OBTENER_NOMBRE_CREADORResult">
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(203) NOT NULL" CanBeNull="false" />
+      <Column Name="CORREO_ELECTRONICO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_OBTENER_NOMBRE_CREADOR" Method="REQUISICIONES_HERRAMIENTAS_OBTENER_NOMBRE_CREADOR">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <ElementType Name="REQUISICIONES_HERRAMIENTAS_OBTENER_NOMBRE_CREADORResult">
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(203) NOT NULL" CanBeNull="false" />
+      <Column Name="CORREO_ELECTRONICO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EMPLEADOS_ACTUALIZAR_FIRMAS" Method="EMPLEADOS_ACTUALIZAR_FIRMAS">
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FIRMA" Parameter="fIRMA" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ORDENES_COMPRAS_MATERIALES_OBTENER_DATOS_ADICIONALES" Method="ORDENES_COMPRAS_MATERIALES_OBTENER_DATOS_ADICIONALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ORDENES_COMPRAS_MATERIALES_OBTENER_DATOS_ADICIONALESResult">
+      <Column Name="MONEDA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CONDICIONESPAGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CONDICIONESENTREGA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TIEMPOENTREGA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ORDENES_COMPRAS_HERRAMIENTAS_OBTENER_DATOS_ADICIONALES" Method="ORDENES_COMPRAS_HERRAMIENTAS_OBTENER_DATOS_ADICIONALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ORDENES_COMPRAS_HERRAMIENTAS_OBTENER_DATOS_ADICIONALESResult">
+      <Column Name="MONEDA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CONDICIONESPAGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CONDICIONESENTREGA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TIEMPOENTREGA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.OBTENER_NUMERO_DE_COMPRA_HERRAMIENTAS" Method="OBTENER_NUMERO_DE_COMPRA_HERRAMIENTAS">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="OBTENER_NUMERO_DE_COMPRA_HERRAMIENTASResult">
+      <Column Name="ID_ORDEN_COMPRA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.APROBAR_ORDEN_COMPRA_HERRAMIENTAS" Method="APROBAR_ORDEN_COMPRA_HERRAMIENTAS">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.APROBAR_ORDEN_COMPRA_MATERIALES" Method="APROBAR_ORDEN_COMPRA_MATERIALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_ASIGNA_ORDEN_COMPRA" Method="REQUISICIONES_HERRAMIENTAS_ASIGNA_ORDEN_COMPRA">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CANCELAR_ORDEN_COMPRA_HERRAMIENTAS" Method="CANCELAR_ORDEN_COMPRA_HERRAMIENTAS">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CANCELAR_ORDEN_COMPRA_MATERIALES" Method="CANCELAR_ORDEN_COMPRA_MATERIALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICION_MATERIALES_NUEVA_REQUISICION" Method="REQUISICION_MATERIALES_NUEVA_REQUISICION">
+    <Parameter Name="MATERIAL" Parameter="mATERIAL" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CANTIDAD" Parameter="cANTIDAD" Type="System.Single" DbType="Real" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICION_MATERIALES_CONSULTAR_USUARIO" Method="REQUISICION_MATERIALES_CONSULTAR_USUARIO">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="REQUISICION_MATERIALES_CONSULTAR_USUARIOResult">
+      <Column Name="ID_PARTIDA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_MATERIAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MATERIAL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UNIDAD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NUMBER_PART" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="CANTIDAD" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="USUARIO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_LIMPIAR_PARTIDAS" Method="REQUISICIONES_LIMPIAR_PARTIDAS">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_ACTUALIZA_PARTIDAS" Method="REQUISICIONES_MATERIALES_ACTUALIZA_PARTIDAS">
+    <Parameter Name="ID_PARTIDA" Parameter="iD_PARTIDA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MATERIAL" Parameter="mATERIAL" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CANTIDAD" Parameter="cANTIDAD" Type="System.Single" DbType="Real" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICION_MATERIALES_ELIMINA_PARTIDAS" Method="REQUISICION_MATERIALES_ELIMINA_PARTIDAS">
+    <Parameter Name="ID_PARTIDA" Parameter="iD_PARTIDA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICION_HERRAMIENTAS_NUEVA_REQUISICION" Method="REQUISICION_HERRAMIENTAS_NUEVA_REQUISICION">
+    <Parameter Name="HERRAMIENTA" Parameter="hERRAMIENTA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CANTIDAD" Parameter="cANTIDAD" Type="System.Single" DbType="Real" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICION_HERRAMIENTAS_CONSULTAR_USUARIO" Method="REQUISICION_HERRAMIENTAS_CONSULTAR_USUARIO">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="REQUISICION_HERRAMIENTAS_CONSULTAR_USUARIOResult">
+      <Column Name="ID_PARTIDA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_HERRAMIENTA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HERRAMIENTA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UNIDAD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NUMBER_PART" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CANTIDAD" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="USUARIO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_LIMPIAR_PARTIDAS_HERRAMIENTAS" Method="REQUISICIONES_LIMPIAR_PARTIDAS_HERRAMIENTAS">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_ACTUALIZA_PARTIDAS" Method="REQUISICIONES_HERRAMIENTAS_ACTUALIZA_PARTIDAS">
+    <Parameter Name="ID_PARTIDA" Parameter="iD_PARTIDA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="HERRAMIENTA" Parameter="hERRAMIENTA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CANTIDAD" Parameter="cANTIDAD" Type="System.Single" DbType="Real" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICION_HERRAMIENTAS_ELIMINA_PARTIDAS" Method="REQUISICION_HERRAMIENTAS_ELIMINA_PARTIDAS">
+    <Parameter Name="ID_PARTIDA" Parameter="iD_PARTIDA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.COMPAÑIAS_ACTUALIZAR_FOTOS" Method="COMPAÑIAS_ACTUALIZAR_FOTOS">
+    <Parameter Name="ID_COMPAÑIA" Parameter="iD_COMPAÑIA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LOGO" Parameter="lOGO" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Parameter Name="IMAGEURL" Parameter="iMAGEURL" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.COMPAÑIAS_MOSTRAR_ID" Method="COMPAÑIAS_MOSTRAR_ID">
+    <Parameter Name="ID_COMPAÑIA" Parameter="iD_COMPAÑIA" Type="System.Int32" DbType="Int" />
+    <ElementType Name="COMPAÑIAS_MOSTRAR_IDResult">
+      <Column Name="ID_COMPAÑIA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COMPAÑIA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="IMAGEURL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.RETORNAR_ORDEN_COMPRA_HERRAMIENTAS" Method="RETORNAR_ORDEN_COMPRA_HERRAMIENTAS">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.RETORNAR_ORDEN_COMPRA_MATERIALES" Method="RETORNAR_ORDEN_COMPRA_MATERIALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.APROBAR_ORDEN_COMPRA_MATERIALES_FOLIO_A" Method="APROBAR_ORDEN_COMPRA_MATERIALES_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CANCELAR_ORDEN_COMPRA_MATERIALES_FOLIO_A" Method="CANCELAR_ORDEN_COMPRA_MATERIALES_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.RETORNAR_ORDEN_COMPRA_MATERIALES_FOLIO_A" Method="RETORNAR_ORDEN_COMPRA_MATERIALES_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_HERRAMIENTAS_ASIGNA_ORDEN_COMPRA_FOLIO_A" Method="REQUISICIONES_HERRAMIENTAS_ASIGNA_ORDEN_COMPRA_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ORDEN_COMPRA_HERRAMIENTAS_DETALLE_CORREO_FOLIO_A" Method="ORDEN_COMPRA_HERRAMIENTAS_DETALLE_CORREO_FOLIO_A">
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ORDEN_COMPRA_HERRAMIENTAS_DETALLE_CORREO_FOLIO_AResult">
+      <Column Name="id_orden_compra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="herramienta" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="proovedor" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="id_requisicion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="moneda" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.APROBAR_ORDEN_COMPRA_HERRAMIENTAS_FOLIO_A" Method="APROBAR_ORDEN_COMPRA_HERRAMIENTAS_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CANCELAR_ORDEN_COMPRA_HERRAMIENTAS_FOLIO_A" Method="CANCELAR_ORDEN_COMPRA_HERRAMIENTAS_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.RETORNAR_ORDEN_COMPRA_HERRAMIENTAS_FOLIO_A" Method="RETORNAR_ORDEN_COMPRA_HERRAMIENTAS_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DOCUMENTOS_CALIDAD_INSERTAR" Method="DOCUMENTOS_CALIDAD_INSERTAR">
+    <Parameter Name="DESCRIPCION" Parameter="dESCRIPCION" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_PROYECTO" Parameter="iD_PROYECTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FECHA_PUBLICACION" Parameter="fECHA_PUBLICACION" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="URL" Parameter="uRL" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CREADO_POR" Parameter="cREADO_POR" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ORDEN_DE_COMPRA_MATERIALES_ENVIAR_APROBACION" Method="ORDEN_DE_COMPRA_MATERIALES_ENVIAR_APROBACION">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESPAGO" Parameter="cONDICIONESPAGO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESENTREGA" Parameter="cONDICIONESENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="TIEMPOENTREGA" Parameter="tIEMPOENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="COTIZACION" Parameter="cOTIZACION" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="IVA" Parameter="iVA" Type="System.Single" DbType="Real" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.OBTENER_NUMERO_DE_COMPRA_MATERIALES" Method="OBTENER_NUMERO_DE_COMPRA_MATERIALES">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="OBTENER_NUMERO_DE_COMPRA_MATERIALESResult">
+      <Column Name="ID_ORDEN_COMPRA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_ASIGNA_ORDEN_COMPRA" Method="REQUISICIONES_MATERIALES_ASIGNA_ORDEN_COMPRA">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.REQUISICIONES_MATERIALES_ASIGNA_ORDEN_COMPRA_FOLIO_A" Method="REQUISICIONES_MATERIALES_ASIGNA_ORDEN_COMPRA_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_ORDEN_COMPRA" Parameter="iD_ORDEN_COMPRA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ORDEN_DE_COMPRA_HERRAMIENTAS_ENVIAR_APROBACION" Method="ORDEN_DE_COMPRA_HERRAMIENTAS_ENVIAR_APROBACION">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESPAGO" Parameter="cONDICIONESPAGO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESENTREGA" Parameter="cONDICIONESENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="TIEMPOENTREGA" Parameter="tIEMPOENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="COTIZACION" Parameter="cOTIZACION" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="IVA" Parameter="iVA" Type="System.Single" DbType="Real" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ORDEN_DE_COMPRA_HERRAMIENTAS_ENVIAR_APROBACION_FOLIO_A" Method="ORDEN_DE_COMPRA_HERRAMIENTAS_ENVIAR_APROBACION_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESPAGO" Parameter="cONDICIONESPAGO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESENTREGA" Parameter="cONDICIONESENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="TIEMPOENTREGA" Parameter="tIEMPOENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="COTIZACION" Parameter="cOTIZACION" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="IVA" Parameter="iVA" Type="System.Single" DbType="Real" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.OBTENER_NUMERO_DE_COMPRA_MATERIALES_FOLIO_A" Method="OBTENER_NUMERO_DE_COMPRA_MATERIALES_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="OBTENER_NUMERO_DE_COMPRA_MATERIALES_FOLIO_AResult">
+      <Column Name="ID_ORDEN_COMPRA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.OBTENER_NUMERO_DE_COMPRA_HERRAMIENTAS_FOLIO_A" Method="OBTENER_NUMERO_DE_COMPRA_HERRAMIENTAS_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="OBTENER_NUMERO_DE_COMPRA_HERRAMIENTAS_FOLIO_AResult">
+      <Column Name="ID_ORDEN_COMPRA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ORDEN_DE_COMPRA_MATERIALES_ENVIAR_APROBACION_FOLIO_A" Method="ORDEN_DE_COMPRA_MATERIALES_ENVIAR_APROBACION_FOLIO_A">
+    <Parameter Name="ID_REQUISICION" Parameter="iD_REQUISICION" Type="System.Int32" DbType="Int" />
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="COMENTARIO" Parameter="cOMENTARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESPAGO" Parameter="cONDICIONESPAGO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONDICIONESENTREGA" Parameter="cONDICIONESENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="TIEMPOENTREGA" Parameter="tIEMPOENTREGA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_PROOVEDOR" Parameter="iD_PROOVEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="COTIZACION" Parameter="cOTIZACION" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="IVA" Parameter="iVA" Type="System.Single" DbType="Real" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.NOMINA_DIAS_LABORADOS" Method="NOMINA_DIAS_LABORADOS">
+    <Parameter Name="ID_NOMINA" Parameter="iD_NOMINA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <ElementType Name="NOMINA_DIAS_LABORADOSResult">
+      <Column Name="ID_DETALLE_NOMINA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_NOMINA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_EMPLEADO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NOMINA_INSERTAR_DETALLE" Method="NOMINA_INSERTAR_DETALLE">
+    <Parameter Name="ID_NOMINA" Parameter="iD_NOMINA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FECHA" Parameter="fECHA" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.NOMINA_ELIMINAR_DETALLE" Method="NOMINA_ELIMINAR_DETALLE">
+    <Parameter Name="ID_NOMINA" Parameter="iD_NOMINA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DOCUMENTOS_CALIDAD_MOSTRAR_POR_PUBLICACION" Method="DOCUMENTOS_CALIDAD_MOSTRAR_POR_PUBLICACION">
+    <Parameter Name="ID_PUBLICACION" Parameter="iD_PUBLICACION" Type="System.Int32" DbType="Int" />
+    <ElementType Name="DOCUMENTOS_CALIDAD_MOSTRAR_POR_PUBLICACIONResult">
+      <Column Name="ID_DOCUMENTO_CALIDAD_DETALLE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_DOCUMENTO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="URL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EMPLEADO_OBTENER_NOMBRE_USUARIO" Method="EMPLEADO_OBTENER_NOMBRE_USUARIO">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="EMPLEADO_OBTENER_NOMBRE_USUARIOResult">
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(203) NOT NULL" CanBeNull="false" />
+      <Column Name="CORREO_ELECTRONICO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ID_EMPLEADO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.APROBADOR_TRANSACCIONES_OBTENER_ID" Method="APROBADOR_TRANSACCIONES_OBTENER_ID">
+    <ElementType Name="APROBADOR_TRANSACCIONES_OBTENER_IDResult">
+      <Column Name="ID_EMPLEADO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TRANSACCIONES_RECIBIDO_OBTENER_ID" Method="TRANSACCIONES_RECIBIDO_OBTENER_ID">
+    <ElementType Name="TRANSACCIONES_RECIBIDO_OBTENER_IDResult">
+      <Column Name="ID_EMPLEADO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EGRESOS_OBTENER_FOLIO_SOLICITUD" Method="EGRESOS_OBTENER_FOLIO_SOLICITUD">
+    <Parameter Name="USUARIO" Parameter="uSUARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="EGRESOS_OBTENER_FOLIO_SOLICITUDResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CUENTAS_BANCARIAS_OBTENER_SALDOS" Method="CUENTAS_BANCARIAS_OBTENER_SALDOS">
+    <Parameter Name="ID_CUENTA" Parameter="iD_CUENTA" Type="System.Int32" DbType="Int" />
+    <ElementType Name="CUENTAS_BANCARIAS_OBTENER_SALDOSResult">
+      <Column Name="MONEDA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="BANCO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SALDO" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EMPLEADOS_MOSTRAR_NOMINA" Method="EMPLEADOS_MOSTRAR_NOMINA">
+    <Parameter Name="ID_COMPAÑIA" Parameter="iD_COMPAÑIA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_NOMINA" Parameter="iD_NOMINA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TIPO_PERSONAL" Parameter="tIPO_PERSONAL" Type="System.Int32" DbType="Int" />
+    <ElementType Name="EMPLEADOS_MOSTRAR_NOMINAResult">
+      <Column Name="ID_EMPLEADO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(203) NOT NULL" CanBeNull="false" />
+      <Column Name="DEPARTAMENTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PUESTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FECHA_INGRESO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FECHA_NACIMIENTO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SALARIO_DIARIO" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TIPO_PERSONAL" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="NSS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RFC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="COMPAÑIA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DIAS_LABORADOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PERCEPCION_SALARIO" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="OTRAS_PERCEPCIONES" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="FECHA_BAJA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TIPOS_CAMBIO_CONSULTAR" Method="TIPOS_CAMBIO_CONSULTAR">
+    <ElementType Name="TIPOS_CAMBIO_CONSULTARResult">
+      <Column Name="ID_TIPO_CAMBIO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IMPORTE_COMPRA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="IMPORTE_VENTA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EMPLEADOS_OBTENER_FOTOS" Method="EMPLEADOS_OBTENER_FOTOS">
+    <Parameter Name="ID_EMPLEADO" Parameter="iD_EMPLEADO" Type="System.Int32" DbType="Int" />
+    <ElementType Name="EMPLEADOS_OBTENER_FOTOSResult">
+      <Column Name="FOTO" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NOMINA_INSERTAR" Method="NOMINA_INSERTAR">
+    <Parameter Name="PERIODO_INICIAL" Parameter="pERIODO_INICIAL" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="PERIODO_FINAL" Parameter="pERIODO_FINAL" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TIPO" Parameter="tIPO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_COMPAÑIA" Parameter="iD_COMPAÑIA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EGRESOS_MODIFICAR" Method="EGRESOS_MODIFICAR">
+    <Parameter Name="ID_EGRESO" Parameter="iD_EGRESO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IMPORTE" Parameter="iMPORTE" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONCEPTO" Parameter="cONCEPTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TIPO" Parameter="tIPO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FOLIO" Parameter="fOLIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="FECHA_OPERACION" Parameter="fECHA_OPERACION" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="SOLICITANTE" Parameter="sOLICITANTE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AUTORIZADOR" Parameter="aUTORIZADOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RECIBIDO_POR" Parameter="rECIBIDO_POR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="BENEFICIARIO" Parameter="bENEFICIARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="IMPORTE_USD" Parameter="iMPORTE_USD" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="ID_PROYECTO" Parameter="iD_PROYECTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OBSERVACIONES" Parameter="oBSERVACIONES" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.INGRESOS_INSERTAR" Method="INGRESOS_INSERTAR">
+    <Parameter Name="FECHA_OPERACION" Parameter="fECHA_OPERACION" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ORIGEN" Parameter="oRIGEN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DOCUMENTO" Parameter="dOCUMENTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IMPORTE" Parameter="iMPORTE" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CONCEPTO" Parameter="cONCEPTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CLIENTE" Parameter="cLIENTE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ACREEDOR" Parameter="aCREEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_CUENTA" Parameter="iD_CUENTA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FOLIO" Parameter="fOLIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_CUENTA_ORIGEN" Parameter="iD_CUENTA_ORIGEN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OBSERVACIONES" Parameter="oBSERVACIONES" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.INGRESOS_MODIFICAR" Method="INGRESOS_MODIFICAR">
+    <Parameter Name="ID_INGRESO" Parameter="iD_INGRESO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FECHA_OPERACION" Parameter="fECHA_OPERACION" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ORIGEN" Parameter="oRIGEN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DOCUMENTO" Parameter="dOCUMENTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IMPORTE" Parameter="iMPORTE" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CONCEPTO" Parameter="cONCEPTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CLIENTE" Parameter="cLIENTE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ACREEDOR" Parameter="aCREEDOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_CUENTA" Parameter="iD_CUENTA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FOLIO" Parameter="fOLIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_CUENTA_ORIGEN" Parameter="iD_CUENTA_ORIGEN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OBSERVACIONES" Parameter="oBSERVACIONES" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.NOMINA_CONSULTAR_PERIODO" Method="NOMINA_CONSULTAR_PERIODO">
+    <Parameter Name="PERIODO_INICIAL" Parameter="pERIODO_INICIAL" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="PERIODO_FINAL" Parameter="pERIODO_FINAL" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ID_COMPAÑIA" Parameter="iD_COMPAÑIA" Type="System.Int32" DbType="Int" />
+    <ElementType Name="NOMINA_CONSULTAR_PERIODOResult">
+      <Column Name="ID_NOMINA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PERIODO_INICIAL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PERIODO_FINAL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_TIPO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_COMPAÑIA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NOMINA_CONSULTAR_ID_NOMINA" Method="NOMINA_CONSULTAR_ID_NOMINA">
+    <Parameter Name="ID_NOMINA" Parameter="iD_NOMINA" Type="System.Int32" DbType="Int" />
+    <ElementType Name="NOMINA_CONSULTAR_ID_NOMINAResult">
+      <Column Name="ID_NOMINA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PERIODO_INICIAL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PERIODO_FINAL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_TIPO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_COMPAÑIA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EGRESO_OBTENER_DATOS" Method="EGRESO_OBTENER_DATOS">
+    <Parameter Name="ID_EGRESO" Parameter="iD_EGRESO" Type="System.Int32" DbType="Int" />
+    <ElementType Name="EGRESO_OBTENER_DATOSResult">
+      <Column Name="ID_EGRESO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IMPORTE" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MONEDA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CONCEPTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TIPO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOLIO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FECHA_CREACION" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FECHA_OPERACION" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SOLICITANTE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AUTORIZADOR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RECIBIDO_POR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BENEFICIARIO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ID_COMPAÑIA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IMPORTE_USD" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ESTADO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_PROYECTO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_CUENTA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_CUENTA_DESTINO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOMBRESOLICITANTE" Type="System.String" DbType="VarChar(203)" CanBeNull="true" />
+      <Column Name="NOMBREAUTORIZADOR" Type="System.String" DbType="VarChar(203)" CanBeNull="true" />
+      <Column Name="NOMBRERECIBIDOPOR" Type="System.String" DbType="VarChar(203)" CanBeNull="true" />
+      <Column Name="OBSERVACIONES" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FECHA_PAGO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EGRESOS_MODIFICAR_STATUS" Method="EGRESOS_MODIFICAR_STATUS">
+    <Parameter Name="ID_EGRESO" Parameter="iD_EGRESO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ESTADO" Parameter="eSTADO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TIPO" Parameter="tIPO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FOLIO" Parameter="fOLIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_CUENTA" Parameter="iD_CUENTA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FECHA_PAGO" Parameter="fECHA_PAGO" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EGRESOS_MODIFICAR_SOLICITUDES" Method="EGRESOS_MODIFICAR_SOLICITUDES">
+    <Parameter Name="ID_EGRESO" Parameter="iD_EGRESO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_PROYECTO" Parameter="iD_PROYECTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="BENEFICIARIO" Parameter="bENEFICIARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="IMPORTE" Parameter="iMPORTE" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CONCEPTO" Parameter="cONCEPTO" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EGRESOS_INSERTAR" Method="EGRESOS_INSERTAR">
+    <Parameter Name="IMPORTE" Parameter="iMPORTE" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="MONEDA" Parameter="mONEDA" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CONCEPTO" Parameter="cONCEPTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TIPO" Parameter="tIPO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FOLIO" Parameter="fOLIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="FECHA_OPERACION" Parameter="fECHA_OPERACION" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="SOLICITANTE" Parameter="sOLICITANTE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AUTORIZADOR" Parameter="aUTORIZADOR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RECIBIDO_POR" Parameter="rECIBIDO_POR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="BENEFICIARIO" Parameter="bENEFICIARIO" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ID_COMPAÑIA" Parameter="iD_COMPAÑIA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IMPORTE_USD" Parameter="iMPORTE_USD" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="ID_PROYECTO" Parameter="iD_PROYECTO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_CUENTA" Parameter="iD_CUENTA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_CUENTA_DESTINO" Parameter="iD_CUENTA_DESTINO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ESTADO" Parameter="eSTADO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OBSERVACIONES" Parameter="oBSERVACIONES" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

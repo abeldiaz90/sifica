@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ERPModelStoreContainer">
+          <EntitySet Name="CLIENTES" EntityType="ERPModel.Store.CLIENTES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CONTRATOS" EntityType="ERPModel.Store.CONTRATOS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MENU" EntityType="ERPModel.Store.MENU" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PARTIDAS" EntityType="ERPModel.Store.PARTIDAS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="ERPModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO" Type="int" />
+          <Property Name="NOMBRE" Type="varchar(max)" />
+          <Property Name="DIRECCION" Type="varchar(max)" />
+          <Property Name="TELEFONO" Type="varchar(max)" />
+          <Property Name="RFC" Type="varchar(max)" />
+          <Property Name="CORREO" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CONTRATOS">
+          <Key>
+            <PropertyRef Name="ID_CONTRATO" />
+          </Key>
+          <Property Name="ID_CONTRATO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CLIENTE" Type="int" />
+          <Property Name="NUMERO" Type="varchar(max)" />
+          <Property Name="DESCRIPCION" Type="varchar(max)" />
+          <Property Name="MONTO_USD" Type="money" />
+          <Property Name="MONTO_MXN" Type="money" />
+          <Property Name="INICIO" Type="datetime" />
+          <Property Name="TERMINO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="ToolTip" Type="varchar" MaxLength="50" />
+          <Property Name="NavigateUrl" Type="varchar" MaxLength="50" />
+          <Property Name="ImageUrlField" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PARTIDAS">
+          <Key>
+            <PropertyRef Name="ID_PARTIDA" />
+          </Key>
+          <Property Name="ID_PARTIDA" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CONTRATO" Type="int" />
+          <Property Name="NUMERO" Type="varchar(max)" />
+          <Property Name="DESCRIPCION" Type="varchar(max)" />
+          <Property Name="MONTO_USD" Type="money" />
+          <Property Name="MONTO_MXN" Type="money" />
+          <Property Name="ID_UNIDAD_MEDIDA" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ERPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ERP" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTES" EntityType="ERPModel.CLIENTES" />
+          <EntitySet Name="CONTRATOS" EntityType="ERPModel.CONTRATOS" />
+          <EntitySet Name="MENU" EntityType="ERPModel.MENU" />
+          <EntitySet Name="PARTIDAS" EntityType="ERPModel.PARTIDAS" />
+          <EntitySet Name="sysdiagrams" EntityType="ERPModel.sysdiagrams" />
+          <AssociationSet Name="FK_CONTRATOS_CLIENTES1" Association="ERPModel.FK_CONTRATOS_CLIENTES1">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTIDAS_CONTRATOS" Association="ERPModel.FK_PARTIDAS_CONTRATOS">
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+            <End Role="PARTIDAS" EntitySet="PARTIDAS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="NUMERO" Type="Int32" />
+          <Property Name="NOMBRE" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="RFC" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="ID_CLIENTE" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CORREO" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONTRATOS" Relationship="ERPModel.FK_CONTRATOS_CLIENTES1" FromRole="CLIENTES" ToRole="CONTRATOS" />
+        </EntityType>
+        <EntityType Name="CONTRATOS">
+          <Key>
+            <PropertyRef Name="ID_CONTRATO" />
+          </Key>
+          <Property Type="Int32" Name="ID_CONTRATO" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ID_CLIENTE" />
+          <Property Type="String" Name="NUMERO" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPCION" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MONTO_USD" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="MONTO_MXN" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="INICIO" />
+          <Property Type="DateTime" Name="TERMINO" />
+          <NavigationProperty Name="CLIENTES" Relationship="ERPModel.FK_CONTRATOS_CLIENTES1" FromRole="CONTRATOS" ToRole="CLIENTES" />
+          <NavigationProperty Name="PARTIDAS" Relationship="ERPModel.FK_PARTIDAS_CONTRATOS" FromRole="CONTRATOS" ToRole="PARTIDAS" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ParentId" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ToolTip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NavigateUrl" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageUrlField" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PARTIDAS">
+          <Key>
+            <PropertyRef Name="ID_PARTIDA" />
+          </Key>
+          <Property Type="Int32" Name="ID_PARTIDA" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ID_CONTRATO" />
+          <Property Type="String" Name="NUMERO" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPCION" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MONTO_USD" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="MONTO_MXN" Precision="19" Scale="4" />
+          <NavigationProperty Name="CONTRATOS" Relationship="ERPModel.FK_PARTIDAS_CONTRATOS" FromRole="PARTIDAS" ToRole="CONTRATOS" />
+          <Property Type="Int32" Name="ID_UNIDAD_MEDIDA" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_CONTRATOS_CLIENTES1">
+          <End Type="ERPModel.CLIENTES" Role="CLIENTES" Multiplicity="0..1" />
+          <End Type="ERPModel.CONTRATOS" Role="CONTRATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="CONTRATOS">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTIDAS_CONTRATOS">
+          <End Type="ERPModel.CONTRATOS" Role="CONTRATOS" Multiplicity="0..1" />
+          <End Type="ERPModel.PARTIDAS" Role="PARTIDAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATOS">
+              <PropertyRef Name="ID_CONTRATO" />
+            </Principal>
+            <Dependent Role="PARTIDAS">
+              <PropertyRef Name="ID_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ERPModelStoreContainer" CdmEntityContainer="ERP">
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="ERPModel.CLIENTES">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTRATOS">
+            <EntityTypeMapping TypeName="ERPModel.CONTRATOS">
+              <MappingFragment StoreEntitySet="CONTRATOS">
+                <ScalarProperty Name="TERMINO" ColumnName="TERMINO" />
+                <ScalarProperty Name="INICIO" ColumnName="INICIO" />
+                <ScalarProperty Name="MONTO_MXN" ColumnName="MONTO_MXN" />
+                <ScalarProperty Name="MONTO_USD" ColumnName="MONTO_USD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_CONTRATO" ColumnName="ID_CONTRATO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU">
+            <EntityTypeMapping TypeName="ERPModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="ImageUrlField" ColumnName="ImageUrlField" />
+                <ScalarProperty Name="NavigateUrl" ColumnName="NavigateUrl" />
+                <ScalarProperty Name="ToolTip" ColumnName="ToolTip" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARTIDAS">
+            <EntityTypeMapping TypeName="ERPModel.PARTIDAS">
+              <MappingFragment StoreEntitySet="PARTIDAS">
+                <ScalarProperty Name="ID_UNIDAD_MEDIDA" ColumnName="ID_UNIDAD_MEDIDA" />
+                <ScalarProperty Name="MONTO_MXN" ColumnName="MONTO_MXN" />
+                <ScalarProperty Name="MONTO_USD" ColumnName="MONTO_USD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="ID_CONTRATO" ColumnName="ID_CONTRATO" />
+                <ScalarProperty Name="ID_PARTIDA" ColumnName="ID_PARTIDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ERPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Modelo" ZoomLevel="100">
+        <EntityTypeShape EntityType="ERPModel.CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083331" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPModel.CONTRATOS" Width="1.5" PointX="3" PointY="5.875" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="ERPModel.MENU" Width="1.5" PointX="3.375" PointY="0.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="ERPModel.PARTIDAS" Width="1.5" PointX="5.25" PointY="6.125" Height="2.3648893229166745" />
+        <EntityTypeShape EntityType="ERPModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" Height="1.9802864583333388" />
+        <AssociationConnector Association="ERPModel.FK_CONTRATOS_CLIENTES1" >
+          <ConnectorPoint PointX="1.5" PointY="3.3071907552083331" />
+          <ConnectorPoint PointX="1.5" PointY="7.3458968098958337" />
+          <ConnectorPoint PointX="3" PointY="7.3458968098958337" />
+        </AssociationConnector>
+        <AssociationConnector Association="ERPModel.FK_PARTIDAS_CONTRATOS" >
+          <ConnectorPoint PointX="4.5" PointY="7.3074446614583373" />
+          <ConnectorPoint PointX="5.25" PointY="7.3074446614583373" />
+        </AssociationConnector>
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

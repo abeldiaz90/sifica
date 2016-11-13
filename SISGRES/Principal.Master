@@ -1,0 +1,385 @@
+﻿irada<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs"
+    Inherits="SISGRES.Principal" EnableViewState="true" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Src="MnuPrincipal.ascx" TagName="MnuPrincipal" TagPrefix="uc1" %>
+
+
+
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web" TagPrefix="dx1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runaACCESO PRINCIPAL</title>
+    <link rel="stylesheet" href="Scripts/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/bootstrapValidator.css" />
+
+    <script type="text/javascript" src="Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="dist/js/bootstrapValidator.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body bgcolor="#cccccc" topmargin="0" onload="countdown('contador')">
+
+        <div id='contador'></div>
+Suspend Email from MUSEBE.COM.MX
+</body>
+
+    <script language="javascript" type="text/javascript">
+        function MantenSesion() {
+            var CONTROLADOR = "Sesion.ashx";
+            var head = document.getElementsByTagName('head').item(0);
+            script = document.createElement('script');
+            script.src = CONTROLADOR;
+            script.setAttribute('type', 'text/javascript');
+            script.defer = true;
+            head.appendChild(script);
+        } 
+    </script>
+    <script language="javascript" type="text/javascript">
+        setInterval('MantenSesion()', <%= (int) (0.9 * (Session.Timeout * 60000)) %>);
+    </script>
+    <style type="text/css">
+        body {
+            /*background: url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');*/
+            background: url(../Fondo/Fondo.jpg) no-repeat;
+            background-size: cover;
+            padding: 50px;
+        }
+    </style>
+    <script>
+
+        function MiPerfil() {
+            $('#MiPerfil').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        //Disable the default MouseOver functionality of ASP.Net Menu control.
+        Sys.WebForms.Menu._elementObjectMapper.getMappedObject = function () {
+            return false;
+        };
+        $(function () {
+            //Remove the style attributes.
+            $(".navbar-nav li, .navbar-nav a, .navbar-nav ul").removeAttr('style');
+
+            //Apply the Bootstrap class to the Submenu.
+            $(".dropdown-menu").closest("li").removeClass().addClass("dropdown-toggle");
+
+            //Apply the Bootstrap properties to the Submenu.
+            $(".dropdown-toggle").find("a").eq(0).attr("data-toggle", "dropdown").attr("aria-haspopup", "true").attr("aria-expanded", "false").append("<span class='caret'></span>");
+
+            //Apply the Bootstrap "active" class to the selected Menu item.
+            $("a.selected").closest("li").addClass("active");
+            $("a.selected").closest(".dropdown-toggle").addClass("active");
+        });
+        function countdown(id){
+            var fecha=new Date('2016','10','01','00','00','00')
+            var hoy=new Date()
+            var dias=0
+            var horas=0
+            var minutos=0
+            var segundos=0
+
+            if (fecha>hoy){
+                var diferencia=(fecha.getTime()-hoy.getTime())/1000
+                dias=Math.floor(diferencia/86400)
+                diferencia=diferencia-(86400*dias)
+                horas=Math.floor(diferencia/3600)
+                diferencia=diferencia-(3600*horas)
+                minutos=Math.floor(diferencia/60)
+                diferencia=diferencia-(60*minutos)
+                segundos=Math.floor(diferencia)
+
+                document.getElementById(id).innerHTML='Quedan ' + dias + ' D&iacute;as, ' + horas + ' Horas, ' + minutos + ' Minutos, ' + segundos + ' Segundos'
+
+                if (dias>0 || horas>0 || minutos>0 || segundos>0){
+                    setTimeout("countdown(\"" + id + "\")",1000)
+                }
+            }
+            else{
+                document.getElementById('restante').innerHTML='Quedan ' + dias + ' D&iacute;as, ' + horas + ' Horas, ' + minutos + ' Minutos, ' + segundos + ' Segundos'
+            }
+        }
+    </script>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <asp:Image ID="Image1" runat="server" Height="62px" ImageAlign="Middle"
+                    Width="100px" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" />
+                <div class="btn-group">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span><%=this.Page.User.Identity.Name.ToString() %>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-toggle="modal" data-target="#PopupContraseña">Cambiar Contraseña</a></li>
+                            <li>
+                                <asp:LinkButton ID="Perfil" runat="server" OnClick="Perfil_Click" Text="Mi Perfil"></asp:LinkButton>
+                            </li>
+                            <li><a href="#" data-toggle="modal" data-target="#PopupCerrarSesion">Cerrar Sesion</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="alert alert-success" role="alert">
+                    <dx:ASPxLabel ID="lblFechaHora" runat="server" Text="">
+                    </dx:ASPxLabel>
+                    <dx:ASPxPopupControl ID="ASPxPopupControl1" runat="server" Font-Bold="True" HeaderText="WARNING" Modal="True" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ShowOnPageLoad="True">
+                        <FooterStyle ForeColor="#FFFFCC" />
+                        <HeaderStyle BackColor="Red" ForeColor="White" />
+                        <ContentCollection>
+                            <dx:PopupControlContentControl runat="server">
+                                <br class="Apple-interchange-newline" />
+                                <span style="color: rgb(33, 33, 33); font-family: arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">EMAIL SERVICES MUSEBE.COM.MX SUSPENDED</span>
+                            </dx:PopupControlContentControl>
+                        </ContentCollection>
+                    </dx:ASPxPopupControl>
+                    <dx:ASPxMenu ID="Menu" runat="server" NameField="MenuText" NavigateUrlField="destUrl"
+                        TextField="MenuText" AccessibilityCompliant="True" AutoSeparators="All"
+                        ClientIDMode="AutoID" CssFilePath="~/App_Themes/SoftOrange/{0}/styles.css" CssPostfix="SoftOrange"
+                        GutterWidth="0px" HorizontalAlign="Center" ImageUrlField="ImageUrlField" ShowPopOutImages="True"
+                        SpriteCssFilePath="~/App_Themes/SoftOrange/{0}/sprite.css" ToolTipField="tooltip"
+                        Theme="Youthful" ItemImagePosition="Bottom" ShowAsToolbar="True" CssClass="navbar navbar-default"
+                        VerticalAlign="Middle" AllowSelectItem="True" EnableAdaptivity="true" Width="100%"
+                        ApplyItemStyleToTemplates="True"
+                        EnableSubMenuScrolling="True" SelectParentItem="True">
+                        <LoadingPanelImage Url="~/App_Themes/SoftOrange/Web/Loading.gif">
+                        </LoadingPanelImage>
+                        <ItemStyle DropDownButtonSpacing="8px" PopOutImageSpacing="10px" ToolbarDropDownButtonSpacing="5px"
+                            ToolbarPopOutImageSpacing="5px" />
+                        <SubMenuStyle GutterWidth="0px" />
+                        <Items>
+                            <dx:MenuItem Text="My Account" NavigateUrl="javascript:void(5)">
+                            </dx:MenuItem>
+                            <dx:MenuItem Text="About Us" NavigateUrl="javascript:void(6)">
+                            </dx:MenuItem>
+                        </Items>
+                    </dx:ASPxMenu>
+                </div>
+                <%--    <dx:ASPxSplitter ID="ASPxSplitter1" runat="server" BackColor="#CCFFCC" ClientIDMode="AutoID"
+                    Height="100px" Theme="Youthful">
+                    <Panes>
+                        <dx:SplitterPane>
+                            <ContentCollection>
+                                <dx:SplitterContentControl runat="server" SupportsDisabledAttribute="True">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td align="left" valign="middle">
+                                                <asp:Image ID="Image1" runat="server" Height="62px" ImageAlign="Middle"
+                                                    Width="100px" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" />
+                                                <br />
+                                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Font-Size="Medium"
+                                                    Theme="Youthful">
+                                                </dx:ASPxLabel>
+                                            </td>
+                                            <td align="center" valign="middle" style="text-align: right">
+                                                <asp:LoginName ID="LoginName1" runat="server" Font-Bold="True" Font-Names="Arial" />
+                                                <br />
+                                                <asp:LoginStatus ID="LoginStatus1" runat="server" Font-Bold="True" Font-Names="Arial"
+                                                    OnLoggingOut="LoginStatus1_LoggingOut" />
+                                                <br />
+                                                <dx:ASPxLabel ID="ASPxLabel2" runat="server" Font-Bold="False"
+                                                    Font-Names="Microsoft Sans Serif" Font-Size="Smaller" Style="font-weight: 700">
+                                                </dx:ASPxLabel>
+                                                <br />
+                                                <dx:ASPxLabel ID="lblFechaHora" runat="server" ClientIDMode="AutoID"
+                                                    Font-Names="Microsoft Sans Serif">
+                                                </dx:ASPxLabel>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </dx:SplitterContentControl>
+                            </ContentCollection>
+                        </dx:SplitterPane>
+                    </Panes>
+                </dx:ASPxSplitter>--%>
+                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
+                <%--   <div class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                                aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                                    class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#"></a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" RenderingMode="List" IncludeStyleBlock="false" StaticMenuStyle-CssClass="nav navbar-nav" DynamicMenuStyle-CssClass="dropdown-menu">
+                            </asp:Menu>
+                        </div>
+                    </div>
+                </div>--%>
+
+
+                <dx:ASPxPopupControl ID="popupCompañia" runat="server" AllowDragging="True" AllowResize="True"
+                    CloseAction="None" HeaderText="Seleccione la Compañia" Modal="True" PopupHorizontalAlign="WindowCenter"
+                    PopupVerticalAlign="WindowCenter" Theme="Youthful" Width="400px">
+                    <ContentStyle HorizontalAlign="Center" VerticalAlign="Middle">
+                    </ContentStyle>
+                    <ContentCollection>
+                        <dx:PopupControlContentControl runat="server">
+                            <dx:ASPxComboBox ID="cboCia" runat="server" AutoResizeWithContainer="True" DataSourceID="Compañias0"
+                                EnableTheming="True" HorizontalAlign="Center" IncrementalFilteringMode="Contains"
+                                TextField="COMPAÑIA" Theme="Youthful" ValueField="ID_COMPAÑIA"
+                                Width="100%" ImageUrlField="IMAGEURL">
+                                <ItemImage Height="70px" Width="100px">
+                                </ItemImage>
+                                <ItemStyle Height="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ListBoxStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True">
+                                </ListBoxStyle>
+                                <LoadingPanelStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True">
+                                </LoadingPanelStyle>
+                                <ValidationSettings ErrorTextPosition="Bottom">
+                                    <RequiredField IsRequired="True" />
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                            <asp:SqlDataSource ID="Compañias0" runat="server" ConnectionString="<%$ ConnectionStrings:SIFICA %>"
+                                SelectCommand="SELECT [ID_COMPAÑIA], [COMPAÑIA], [IMAGEURL] FROM [COMPAÑIAS] ORDER BY [COMPAÑIA]"></asp:SqlDataSource>
+                            <dx:ASPxButton ID="ASPxButton1" runat="server" OnClick="ASPxButton1_Click" Text="Aceptar"
+                                Theme="Youthful">
+                            </dx:ASPxButton>
+                        </dx:PopupControlContentControl>
+                    </ContentCollection>
+                </dx:ASPxPopupControl>
+                <div class="modal fade" id="PopupContraseña" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="PopupContraseñaLabel">Cambio de Contraseña</h4>
+                            </div>
+                            <div class="modal-body">
+                                <dx:ASPxTextBox ID="ASPxTextBox1" runat="server" Width="170px" CssClass="form-control" NullText="Nueva Contraseña" ValidationSettings-RequiredField-IsRequired="true" Password="true" ValidationSettings-ValidationGroup="Password" ClientInstanceName="textbox1">
+                                </dx:ASPxTextBox>
+                                <dx:ASPxTextBox ID="ASPxTextBox2" runat="server" Width="170px" CssClass="form-control" NullText="Confirmar Contraseña" ValidationSettings-RequiredField-IsRequired="true" Password="true" ValidationSettings-ValidationGroup="Password" ClientInstanceName="textbox2">
+                                    <ClientSideEvents Validation="function(s, e) {
+	var originalPasswd = textbox1.GetText();
+    var currentPasswd = s.GetText();
+    e.isValid = (originalPasswd  == currentPasswd);
+}" />
+                                </dx:ASPxTextBox>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <dx:ASPxButton ID="btnModificar" runat="server" Text="Save Changes" CssClass="btn btn-primary" Image-IconID="Save Password" ValidationGroup="Password" OnClick="btnModificar_Click">
+                                    <ClientSideEvents Click="function(s, e){return textbox2.GetIsValid();}" />
+                                </dx:ASPxButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bs-example-modal-lg" id="MiPerfil" tabindex="-1" role="dialog" aria-labelledby="MiPerfilLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="PopupPerfilLabel">Mi Perfil</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxTextBox ID="txtPrimerNombre" runat="server" Width="170px" Caption="Primer Nombre:" CaptionSettings-Position="Top" CssClass="form-control" NullText="First Name" ValidationSettings-ValidationGroup="Perfil" ValidationSettings-RequiredField-IsRequired="true" ValidationSettings-ErrorTextPosition="Bottom">
+                                            </dx:ASPxTextBox>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxTextBox ID="txtSegundoNombre" runat="server" Width="170px" Caption="Segundo Nombre:" CaptionSettings-Position="Top" CssClass="form-control" NullText="Middle">
+                                            </dx:ASPxTextBox>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxTextBox ID="txtApellidoPaterno" runat="server" Width="170px" Caption="Apellido Paterno:" CaptionSettings-Position="Top" CssClass="form-control" NullText="Last" ValidationSettings-ValidationGroup="Perfil" ValidationSettings-RequiredField-IsRequired="true" ValidationSettings-ErrorTextPosition="Bottom">
+                                            </dx:ASPxTextBox>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxTextBox ID="txtApellidoMaterno" runat="server" Width="170px" Caption="Apellido Materno:" CaptionSettings-Position="Top" CssClass="form-control" NullText="Second Last">
+                                            </dx:ASPxTextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxTextBox ID="CorreoElectronico" runat="server" Width="170px" Caption="E-Mail:" CaptionSettings-Position="Top" CssClass="form-control" NullText="Mail" ValidationSettings-ValidationGroup="Perfil" ValidationSettings-RequiredField-IsRequired="true" ValidationSettings-ErrorTextPosition="Bottom" ValidationSettings-RegularExpression-ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                                            </dx:ASPxTextBox>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxDateEdit ID="FechaNacimiento" runat="server" CalendarProperties-Style-CssClass="form-control" CssClass="form-control" Caption="Fecha de Nacimiento" CaptionSettings-Position="Top" Width="200px" ValidationSettings-ValidationGroup="Perfil" ValidationSettings-RequiredField-IsRequired="true" ValidationSettings-ErrorTextPosition="Bottom">
+                                            </dx:ASPxDateEdit>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <dx:ASPxButton ID="btnGuardarPerfil" runat="server" Text="Save Changes" CssClass="btn btn-primary" ValidationGroup="Perfil" OnClick="btnGuardarPerfil_Click">
+                                    <ClientSideEvents Click="function(s, e){return textbox2.GetIsValid();}" />
+                                </dx:ASPxButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="mensajeria" tabindex="-1" role="dialog" aria-labelledby="MensajeriaLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="MensajeriaLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label class="alert alert-success" runat="server" id="Mensajes">
+                                    Datos Guardados</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="PopupCerrarSesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="PopupCerrarSesionLabel">Cerrar Sesion</h4>
+                            </div>
+                            <div class="modal-body">
+                                <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close">Close<span aria-hidden="true">&times;</span></button>--%>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Cancelar
+                                </button>
+                                <dx:ASPxButton ID="btnCerrarSession" runat="server" Text="Cerrar Sesion" OnClick="btnCerrarSession_Click" CssClass="btn btn-primary">
+                                </dx:ASPxButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
